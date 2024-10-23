@@ -1,0 +1,49 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+
+# Игнорирование файлов базы данных
+*.db
+
+# Игнорирование файлов с данными для тестов
+*.xml
+
+# Игнорирование системных файлов
+.DS_Store
+Thumbs.db
+
+# Игнорирование всех файлов среды виртуального окружения
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Игнорирование кэшей и временных файлов
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Игнорирование логов и файлов отладочной информации
+*.log
+
+# Игнорирование файлов конфигураций IDE
+.idea/
+.vscode/
+
+# Игнорирование файлов настроек тестов
+*.coverage
+.cache/
+nosetests.xml
+test-output/
+
+# Игнорирование файлов виртуальных окружений в корневой директории
+pip-log.txt
+pip-delete-this-directory.txt
