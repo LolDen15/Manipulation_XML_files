@@ -3,31 +3,6 @@ import sqlite3
 import re
 from datetime import datetime
 
-# Подключение к базе данных SQLite.
-conn = sqlite3.connect('companies.db')
-cursor = conn.cursor()
-
-# Создаем таблицу для компаний.
-cursor.execute('''
-CREATE TABLE IF NOT EXISTS companies (
-    ogrn TEXT PRIMARY KEY,
-    inn TEXT NOT NULL,
-    name TEXT NOT NULL,
-    date TEXT NOT NULL
-    )
-''')
-
-# Создаем таблицу для телефонов компании.
-cursor.execute('''
-CREATE TABLE IF NOT EXISTS company_phones (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    ogrn TEXT NOT NULL,
-    phone TEXT,
-    FOREIGN KEY (ogrn) REFERENCES companies (ogrn) ON DELETE CASCADE,
-    UNIQUE (ogrn, phone)
-    );
-''')
-
 
 # Функция для валидации данных.
 def is_valid_company(company):
@@ -121,6 +96,31 @@ def parse_xml(file_path):
 
 
 if __name__ == '__main__':
+    # Подключение к базе данных SQLite.
+    conn = sqlite3.connect('companies.db')
+    cursor = conn.cursor()
+
+    # Создаем таблицу для компаний.
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS companies (
+        ogrn TEXT PRIMARY KEY,
+        inn TEXT NOT NULL,
+        name TEXT NOT NULL,
+        date TEXT NOT NULL
+        )
+    ''')
+
+    # Создаем таблицу для телефонов компании.
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS company_phones (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        ogrn TEXT NOT NULL,
+        phone TEXT,
+        FOREIGN KEY (ogrn) REFERENCES companies (ogrn) ON DELETE CASCADE,
+        UNIQUE (ogrn, phone)
+        );
+    ''')
+
     # Запускаем обработку XML файла.
     parse_xml('companies.xml')
 
